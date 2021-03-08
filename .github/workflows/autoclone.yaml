@@ -52,4 +52,4 @@ jobs:
           -X PUT \
           -H "Authorization: Bearer ${{ secrets.HUMANITEC_TOKEN }}" \
           -d '"${{github.event.inputs.deploy_id}}"' \
-          "https://api.humanitec.io/orgs/${{github.event.inputs.org_id}}/apps/${{github.event.inputs.app_id}}/${{github.event.inputs.clone_to_env_id}}/from_deploy_id"
+          "https://api.humanitec.io/orgs/${{github.event.inputs.org_id}}/apps/${{github.event.inputs.app_id}}/envs/${{github.event.inputs.clone_to_env_id}}/from_deploy_id"
