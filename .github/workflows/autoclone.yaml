@@ -35,7 +35,7 @@ jobs:
 
   verify-deployment:
     runs-on: ubuntu-latest
-    if: github.event.inputs.status == 'suceeded' && github.event.inputs.env_id == github.event.inputs.env_filter
+    if: github.event.inputs.status == 'succeeded' && github.event.inputs.env_id == github.event.inputs.env_filter
 
     steps:
       - name: Run Tests
@@ -48,4 +48,4 @@ jobs:
     steps:
       - name: Clone
         run: |
-          echo curl -X GET -H "Authorization: Bearer ${{ secrets.HUMANITEC_TOKEN }}" "https://api.humanitec.io/orgs/${{github.event.inputs.org_id}}/apps/${{github.event.inputs.app_id}}"
+          curl -X GET -H "Authorization: Bearer ${{ secrets.HUMANITEC_TOKEN }}" "https://api.humanitec.io/orgs/${{github.event.inputs.org_id}}/apps/${{github.event.inputs.app_id}}"
