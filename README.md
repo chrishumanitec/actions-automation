@@ -9,7 +9,7 @@ You can create a Humanitec API token via [Organization Settings](https://docs.hu
 Webhook settings can be found in the "Webhooks" tab in [App Settings](https://docs.humanitec.com/reference/user-interface/app-settings-screen).
 
 - **ID**: `github-automation`
-- **URL**: `https://api.github.com/repos/chrishumanitec/actions-automation/actions/workflows/autodeploy.yaml/dispatches`
+- **URL**: `https://api.github.com/repos/chrishumanitec/actions-automation/actions/workflows/autoclone.yaml/dispatches`
 - **Headers**: `Accept: application/vnd.github.v3+json` and `Authorization: token {GITHUB_PAC}` (replace `{GITHUB_PAC}` with your [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token))
 - **Payload**:
 
