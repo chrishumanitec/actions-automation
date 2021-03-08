@@ -1,0 +1,51 @@
+name: auto-deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      org_id:
+        description: 'The Humanitec Organization ID'
+        required: true
+      app_id:
+        description: 'The Humanitec Application ID'
+        required: true
+      env_id:
+        description: 'The Humanitec Environment ID'
+        required: true
+      deploy_id:
+        description: 'The Humanitec ID for the Deployment'
+        required: true
+      delta_id:
+        description: 'The Humanitec ID for the delta that the Deployment occured with'
+        required: true
+      set_id:
+        description: 'The Humanitec ID for the Deployment Set deployed'
+        required: true
+      status:
+        description: 'The status of the deployment. ("succeeded" or "failed")'
+        required: true
+      env_filter:
+        description: 'The environment to apply this action to.'
+        required: true
+      clone_to_env_id:
+        description: 'The environment to clone to'
+        required: true
+
+jobs:
+
+  verify-deployment:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.status == 'suceeded' && github.event.inputs.env_id == github.event.inputs.env_filter
+
+    steps:
+      - name: Run Tests
+        run: |
+          echo "Running tests to verify deployment..." && sleep 5 && echo "Done!"
+
+  clone-to-staging:
+    needs: verify-deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone
+        run: |
+          echo curl -X GET -H "Authorization: Bearer ${{ secrets.HUMANITEC_TOKEN }}" "https://api.humanitec.io/orgs/${{github.event.inputs.org_id}}/apps/${{github.event.inputs.app_id}}"
