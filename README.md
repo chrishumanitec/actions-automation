@@ -36,4 +36,18 @@ You can change the `clone_to_env` to the ID of the environment you want to clone
 
 # Testing
 
-There is a test.sh file which will perform the same action as the webhook without having to trigger a deployment.
+There is a `test.sh` file which will perform the same action as the webhook without having to trigger a deployment.
+
+Usage:
+
+````
+./test.sh /orgs/{orgId}/apps/{appId}/envs/{envId} {cloneToEnvId}
+````
+
+The parameters `{orgId}`, `{appId}` and `{envId}` must always be provided in the API from as shown in the usage.
+The parameter `{cloneToEnvId}` is optional, but should just be the ID of an environment in the same app. (Defaults to `staging`)
+
+Example:
+````
+./test.sh /orgs/my-org/apps/my-app/envs/development verified-env
+````
